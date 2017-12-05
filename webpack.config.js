@@ -17,6 +17,11 @@ module.exports = {
     filename: 'index.js'
   },
   devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001'
+      }
+    },
     port: 3000
   },
   module: {

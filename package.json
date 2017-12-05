@@ -5,7 +5,6 @@
   "repository": "git@github.com:sprokopchuk/reactive-app.git",
   "author": "Sergey Prokopchuk <prokopchuksv21@gmail.com>",
   "license": "MIT",
-  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "webpack-dev-server"
   },
