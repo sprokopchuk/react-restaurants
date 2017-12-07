@@ -17,5 +17,5 @@
 /node_modules/*
 !/log/.keep
 !/tmp/.keep
-
+.DS_Store
 .byebug_history
