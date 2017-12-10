@@ -9,6 +9,8 @@ gem 'rails', '~> 5.1.3'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'foreman'
+gem 'bcrypt'
+gem 'knock'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
