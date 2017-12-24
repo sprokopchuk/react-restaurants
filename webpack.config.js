@@ -26,7 +26,11 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.scss$/, use: ExtractTextPlugin.extract({fallback: 'style-loader', use: ['css-loader', 'sass-loader']}) },
+      { test: /\.scss$/,
+        use: ExtractTextPlugin.extract(
+            {fallback: 'style-loader', use: ['css-loader',
+                { loader: 'sass-loader', options: { includePaths: ["node_modules"]}}]}
+        )},
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
     ]

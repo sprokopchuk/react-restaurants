@@ -12,6 +12,7 @@
     "babel-preset-es2017": "^6.24.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
+    "material-components-web": "^0.27.0",
     "path": "^0.12.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
