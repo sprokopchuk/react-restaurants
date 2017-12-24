@@ -1,2 +1,2 @@
-webpack: yarn --cwd client start
+webpack: yarn start
 rails: bundle exec rails s -p 3001

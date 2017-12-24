@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './index.html',
+  template: './client/index.html',
   filename: 'index.html',
   inject: 'body'
 })
@@ -11,7 +11,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 const ExtractTextPluginConfig = new ExtractTextPlugin('style.css')
 
 module.exports = {
-  entry: './index.js',
+  entry: './client/index.js',
   output: {
     path: path.resolve('dist'),
     filename: 'index.js'
