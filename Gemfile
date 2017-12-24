@@ -20,7 +20,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
   gem 'database_cleaner'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
 end
 
 group :development do

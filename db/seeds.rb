@@ -15,16 +15,18 @@ puts 'Cuisines are created'
 cuisines = Cuisine.all
 
 100.times do
+  location = Location.new(address: Faker::Address.street_address,
+                          city: Faker::Address.city,
+                          lat: Faker::Address.latitude,
+                          lon: Faker::Address.longitude,
+                          zip: Faker::Address.zip)
+
   r = Restaurant.create!(name: Faker::Lorem.sentence,
                          description: Faker::Lorem.paragraph,
-                         address: Faker::Address.street_address,
-                         city: Faker::Address.city,
-                         lat: Faker::Address.latitude,
-                         lon: Faker::Address.longitude,
-                         zip: Faker::Address.zip,
                          phone_numbers: Faker::PhoneNumber.cell_phone)
 
   r.cuisines << cuisines.sample(2)
+  r.locations << location
 end
 
 puts 'Restaurants are created'
