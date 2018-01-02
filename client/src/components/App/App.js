@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
+import { Card, Header } from '../'
 
 export default class App extends Component {
   render() {
     return (
-         <button className="mdc-button mdc-button--raised mdc-ripple-surface">
-             Print Greeting
-         </button>
+      <div>
+        <Header />
+        <main className='mdc-layout-grid'>
+         <div className="mdc-layout-grid__inner">
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
+        </main>
+      </div>
     )
   }
 }
