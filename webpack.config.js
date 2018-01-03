@@ -1,20 +1,33 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './client/src/index.html',
-  filename: 'index.html',
-  inject: 'body'
-})
-
 const ExtractTextPluginConfig = new ExtractTextPlugin('style.css')
+const nodeExternals = require('webpack-node-externals')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-module.exports = {
+const server = {
+  target: 'node',
+  externals: nodeExternals(),
+  entry: './client/src/server.js',
+  output: {
+    path: path.resolve('dist'),
+    filename: 'server.js',
+    libraryTarget: 'commonjs2',
+    publicPath: '/'
+  },
+  module: {
+    loaders: [
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+    ]
+  }
+}
+
+const client = {
   entry: './client/src/index.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'index.js'
+    filename: 'index.js',
+    publicPath: '/'
   },
   devServer: {
     proxy: {
@@ -28,12 +41,14 @@ module.exports = {
     loaders: [
       { test: /\.scss$/,
         use: ExtractTextPlugin.extract(
-            {fallback: 'style-loader', use: ['css-loader',
+            { fallback: 'style-loader', use: ['css-loader',
                 { loader: 'sass-loader', options: { includePaths: ["node_modules"]}}]}
         )},
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig, ExtractTextPluginConfig]
+  plugins: [ExtractTextPluginConfig, new CleanWebpackPlugin(['dist'])]
 }
+
+module.exports = [client, server]
