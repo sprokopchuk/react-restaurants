@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, AboutUs } from '../components'
+import { Home, AboutUs, RestaurantForm } from '../components'
 
 const routes = [
   { path: '/',
@@ -8,6 +8,9 @@ const routes = [
   },
   { path: '/about_us',
     component: () => ( <AboutUs/> )
+  },
+  { path: '/restaurants/new',
+    component: () => ( <RestaurantForm/> )
   }
 ]
 export default routes

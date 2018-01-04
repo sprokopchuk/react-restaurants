@@ -1,15 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import App from './components/App'
-import routes from './config/routes'
 import './main.scss'
 
 const initialState = {}
 
-ReactDOM.hydrate(
-  <BrowserRouter>
-    <App {...initialState } />
-  </BrowserRouter>
-, document.getElementById('root'))
+const render = (Component, state) => {
+  ReactDOM.hydrate(
+    <BrowserRouter>
+      <Component {...state}/>
+    </BrowserRouter>,
+  document.getElementById('root'))
+}
 
+render(App)
+
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    render(App, initialState)
+  })
+}

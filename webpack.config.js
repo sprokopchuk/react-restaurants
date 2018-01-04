@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ExtractTextPluginConfig = new ExtractTextPlugin('style.css')
@@ -5,6 +6,7 @@ const nodeExternals = require('webpack-node-externals')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const server = {
+  name: 'server',
   target: 'node',
   externals: nodeExternals(),
   entry: './client/src/server.js',
@@ -23,7 +25,11 @@ const server = {
 }
 
 const client = {
-  entry: './client/src/index.js',
+  name: 'client',
+  entry: [
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    './client/src/index.js'
+  ],
   output: {
     path: path.resolve('dist'),
     filename: 'index.js',
@@ -48,7 +54,12 @@ const client = {
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
     ]
   },
-  plugins: [ExtractTextPluginConfig, new CleanWebpackPlugin(['dist'])]
+  plugins: [
+    ExtractTextPluginConfig,
+    new CleanWebpackPlugin(['dist']),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
 module.exports = [client, server]

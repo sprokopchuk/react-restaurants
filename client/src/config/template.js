@@ -9,13 +9,13 @@ const template = ({ body, initialState }) => {
         <title>Food app</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="/style.css" />
         <script>window.__APP_INITIAL_STATE__ = ${initialState}</script>
       </head>
       <body class='mdc-typography'>
         <div id="root">${body}</div>
       </body>
-      <script src="index.js"></script>
+      <script src="/index.js"></script>
     </html>
   `
 }
