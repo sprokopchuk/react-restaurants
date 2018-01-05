@@ -6,7 +6,7 @@
   "author": "Sergey Prokopchuk <prokopchuksv21@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --colors && node dist/server"
+    "start": "webpack --colors && node client/src/server"
   },
   "dependencies": {
     "babel-preset-es2017": "^6.24.1",

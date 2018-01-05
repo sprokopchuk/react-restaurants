@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router'
 import { App } from '../components'
 import template from '../config/template'
 
-export const serverRenderer = () => (req, res, next) => {
+const serverRenderer = () => (req, res, next) => {
   const initialState = {}
   const context = {}
   const appString = renderToString(
@@ -22,3 +22,4 @@ export const serverRenderer = () => (req, res, next) => {
   }))
 }
 
+export default serverRenderer
