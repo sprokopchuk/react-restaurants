@@ -1,5 +1,6 @@
 import express from 'express'
 import webpack from 'webpack'
+import httpProxyMiddleware from 'http-proxy-middleware'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
@@ -11,11 +12,13 @@ const compiler = webpack(config)
 
 const app = express()
 
+app.use('/api', httpProxyMiddleware(devServer.proxy['/api']))
+
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true
 }))
 
-app.use(webpackHotServerMiddleware(compiler))
+// app.use(webpackHotServerMiddleware(compiler))
 
 app.use(webpackHotMiddleware(
   compiler.compilers.find(compiler => compiler.name === 'client'),

@@ -12,6 +12,7 @@
     "babel-preset-es2017": "^6.24.1",
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.2",
+    "http-proxy-middleware": "^0.17.4",
     "material-components-web": "^0.27.0",
     "path": "^0.12.7",
     "react": "^16.2.0",
