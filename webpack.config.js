@@ -9,7 +9,7 @@ const server = {
   name: 'server',
   target: 'node',
   externals: nodeExternals(),
-  entry: './client/src/server.js',
+  entry: './client/src/server',
   output: {
     path: path.resolve('dist'),
     filename: 'server.js',

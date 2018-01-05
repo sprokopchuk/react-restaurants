@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Card } from '..'
+import { Card } from '..'
 
 const Home = () => (
 <main className='mdc-layout-grid'>

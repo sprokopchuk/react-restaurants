@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Nav = () => (
+export const Nav = () => (
 <nav className='mdc-tab-bar'>
   <NavLink
     exact
@@ -26,4 +26,3 @@ const Nav = () => (
 </nav>
 )
 
-export default Nav

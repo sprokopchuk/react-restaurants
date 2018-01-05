@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav } from '..'
+import { Nav } from './Nav'
 
 const Header = () => (
 <header className="mdc-toolbar">
