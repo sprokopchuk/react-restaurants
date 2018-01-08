@@ -1,1 +1,1 @@
-export { default as default } from './RestaurantForm'
+export { default as default } from './StateFulRestaurantForm'

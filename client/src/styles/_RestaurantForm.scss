@@ -1,0 +1,16 @@
+.RestaurantForm {
+  &-field {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  &-selectInput {
+    width: 100%;
+    margin-left: 10px;
+    &.mdc-text-field {
+      .mdc-text-field__input {
+        border-bottom: none;
+      }
+    }
+  }
+}

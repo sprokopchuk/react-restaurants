@@ -13,7 +13,7 @@ export const Nav = () => (
   <NavLink
     activeClassName='mdc-tab--active'
     className='mdc-tab'
-    to='/restaurants'>
+    to='/restaurants/new'>
     Restaurants
   </NavLink>
   <NavLink
