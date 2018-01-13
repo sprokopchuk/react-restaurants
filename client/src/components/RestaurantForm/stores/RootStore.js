@@ -1,9 +1,17 @@
 import RestaurantStore from './RestaurantStore'
 
 class RootStore {
-  constructor({ transport }) {
-    this.transport = transport
-    this.restaurantStore = new RestaurantStore()
+  constructor(context) {
+    this.restaurantStore = new RestaurantStore(context)
+    this.fetchInitialData()
+  }
+
+  fetchInitialData() {
+    this.fetchInitialRestaurantData()
+  }
+
+  fetchInitialRestaurantData() {
+    this.restaurantStore.fetchRestaurants()
   }
 }
 

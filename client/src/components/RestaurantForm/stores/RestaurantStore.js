@@ -3,31 +3,31 @@ import { observable, action } from 'mobx'
 class RestaurantStore {
 
   constructor({ transport }) {
-    this.transport
+    this.transport = transport
   }
 
   @observable name = ''
+  @observable restaurants = []
 
   @action('Set restaurant name')
   seRestaurantName(value) {
     this.name = value
   }
 
-  @action('Fetch restaurants')
+  @action('Fetch options')
   fetchOptions(value) {
-    if(value) {
-      const restaurantOptions = [
-        { value: 'grains', label: 'Bread, Cereal, Rice, and Pasta' },
-        { value: 'vegetables', label: 'Vegetables' },
-        { value: 'fruit', label: 'Fruit' },
-        { value: 'dairy', label: 'Milk, Yogurt, and Cheese' },
-        { value: 'meat', label: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts' },
-        { value: 'fats', label: 'Fats, Oils, and Sweets' }
-      ]
-      return Promise.resolve({ options: restaurantOptions })
-    } else {
+    if (!value) {
       return Promise.resolve({ options: [] })
+    } else {
+      return Promise.resolve({ options: Array.from(this.restaurants) })
     }
+  }
+
+  fetchRestaurants() {
+    return this.transport.Restaurant.getRestaurants()
+      .then(action('Fetch all restaurants', resp => {
+        this.restaurants = resp.data.map(item => ({ name: item.id, label: item.name }))
+      }))
   }
 }
 

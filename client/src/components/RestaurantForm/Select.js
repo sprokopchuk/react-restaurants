@@ -39,6 +39,7 @@ class Select extends Component {
         inputRenderer={this.inputRenderer}
         onChange={handleChangeOnName}
         loadOptions={fetchOptions}
+        instanceId='restaurant-name'
         placeholder='Pick a restaurant name or write your own' />
     )
   }

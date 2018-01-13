@@ -32,6 +32,10 @@ class RestaurantForm extends Component {
                 <div className='mdc-text-field__bottom-line' />
               </div>
               <div className='mdc-text-field RestaurantForm-field'>
+                <input type='text' className='mdc-text-field__input' id='restaurant-zip' placeholder='Zip'/>
+                <div className='mdc-text-field__bottom-line' />
+              </div>
+              <div className='mdc-text-field RestaurantForm-field'>
                 <input type='text' className='mdc-text-field__input' id='restaurant-phone-number' placeholder='Phone number'/>
                 <div className='mdc-text-field__bottom-line' />
               </div>

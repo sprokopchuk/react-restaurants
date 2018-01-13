@@ -1,8 +1,9 @@
+import axios from 'axios'
 
-const getRestaurants = () => (
-  Promise.resolve({})
-)
+const Restaurant = {
+  getRestaurants: () => axios.get('/api/restaurants')
+}
 
 export default {
-  fetchRestaurants: getRestaurants
+  Restaurant
 }
