@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { compose, withProps, withHandlers } from 'recompose'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 import PropTypes from 'prop-types'
-
 
 const enhance = compose(
   inject('store'),
   withProps(({ store }) => ({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div className='MapLocation' />,
+    mapElement: <div style={{ height: `100%` }} />,
     restaurantStore: store.restaurantStore
   })),
+  withScriptjs,
+  withGoogleMap,
   withHandlers({
 
   }),
@@ -17,17 +23,17 @@ const enhance = compose(
 
 class MapLocation extends Component {
 
+  get defaultCenter() {
+    return { lat: 49.0139, lng: 31.2858 }
+  }
+
   render() {
     return (
-      <div className='mdc-layout-grid__inner'>
-        <div className='mdc-layout-grid__cell mdc-layout-grid__cell--span-2'>
-        </div>
-        <div className='mdc-layout-grid__cell mdc-layout-grid__cell--span-7'>
-          <div className='MapLocation'>
-            <div className='MapLocation-wrapper' />
-          </div>
-        </div>
-      </div>
+      <GoogleMap
+        defaultZoom={5}
+        defaultCenter={this.defaultCenter}
+      >
+      </GoogleMap>
     )
   }
 }

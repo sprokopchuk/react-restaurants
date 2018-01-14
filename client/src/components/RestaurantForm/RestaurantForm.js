@@ -1,7 +1,6 @@
 import { observer, inject } from 'mobx-react'
 import React, { Component } from 'react'
 import { compose, withProps } from 'recompose'
-import PropTypes from 'prop-types'
 import Select from './Select'
 import MapLocation from './MapLocation'
 
@@ -18,7 +17,13 @@ class RestaurantForm extends Component {
   render() {
     return (
       <div className='mdc-layout-grid'>
-        <MapLocation />
+        <div className='mdc-layout-grid__inner'>
+          <div className='mdc-layout-grid__cell mdc-layout-grid__cell--span-2'>
+          </div>
+          <div className='mdc-layout-grid__cell mdc-layout-grid__cell--span-7'>
+            <MapLocation />
+          </div>
+        </div>
         <div className='mdc-layout-grid__inner'>
           <div className='mdc-layout-grid__cell mdc-layout-grid__cell--span-3'>
           </div>
