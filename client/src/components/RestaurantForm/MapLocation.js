@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import { compose, withProps, withHandlers } from 'recompose'
+import { compose, withProps, withHandlers, withContext } from 'recompose'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 import PropTypes from 'prop-types'
+import {isEmpty} from '../../utils/common';
 
 const enhance = compose(
   inject('store'),
@@ -16,7 +17,9 @@ const enhance = compose(
   withScriptjs,
   withGoogleMap,
   withHandlers({
-
+    setLocation: props => ({ latLng }) => {
+      props.restaurantStore.setLocation(latLng)
+    }
   }),
   observer
 )
@@ -27,12 +30,20 @@ class MapLocation extends Component {
     return { lat: 49.0139, lng: 31.2858 }
   }
 
+  get isLocationSet() {
+    const { location } = this.props.restaurantStore
+    return !isEmpty(location)
+  }
+
   render() {
+    const { setLocation, restaurantStore } = this.props
     return (
       <GoogleMap
-        defaultZoom={5}
+        defaultZoom={6}
         defaultCenter={this.defaultCenter}
+        onClick={setLocation}
       >
+        { this.isLocationSet && <Marker position={restaurantStore.location} /> }
       </GoogleMap>
     )
   }

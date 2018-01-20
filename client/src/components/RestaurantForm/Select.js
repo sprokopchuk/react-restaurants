@@ -10,10 +10,10 @@ const enhance = compose(
     restaurantStore: store.restaurantStore
   })),
   withHandlers({
-    handleChangeOnName: props => (value) => {
+    handleChangeOnName: props => value => {
       props.restaurantStore.seRestaurantName(value)
     },
-    fetchOptions: props => (value) => (
+    fetchOptions: props => value => (
       props.restaurantStore.fetchOptions(value)
     )
   }),

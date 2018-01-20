@@ -20,7 +20,10 @@ class RestaurantForm extends Component {
         <div className='mdc-layout-grid__inner'>
           <div className='mdc-layout-grid__cell mdc-layout-grid__cell--span-2'>
           </div>
-          <div className='mdc-layout-grid__cell mdc-layout-grid__cell--span-7'>
+          <div className='mdc-layout-grid__cell mdc-layout-grid__cell--span-8'>
+            <h2 className='mdc-typography--subheading2 mdc-typography--adjust-margin'>
+              Place marker where your restaurant is located
+            </h2>
             <MapLocation />
           </div>
         </div>

@@ -8,6 +8,7 @@ class RestaurantStore {
 
   @observable name = ''
   @observable restaurants = []
+  @observable location = {}
 
   @action('Set restaurant name')
   seRestaurantName(value) {
@@ -28,6 +29,11 @@ class RestaurantStore {
       .then(action('Fetch all restaurants', resp => {
         this.restaurants = resp.data.map(item => ({ name: item.id, label: item.name }))
       }))
+  }
+
+  @action('Set location')
+  setLocation(value) {
+    this.location = { lat: value.lat(), lng: value.lng() }
   }
 }
 
