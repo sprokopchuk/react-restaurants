@@ -1,0 +1,6 @@
+.gitignore
+.ruby-gemset
+.ruby-version
+.env
+/log
+/tmp
