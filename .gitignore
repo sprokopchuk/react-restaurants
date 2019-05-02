@@ -14,7 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
-/node_modules/*
+/client/node_modules/*
 !/log/.keep
 !/tmp/.keep
 .DS_Store
