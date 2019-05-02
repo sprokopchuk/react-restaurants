@@ -6,7 +6,7 @@
   "author": "Sergey Prokopchuk <prokopchuksv21@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --colors && node client/src/server"
+    "start": "webpack --colors --env.API_HOST=$API_HOST && node src/server"
   },
   "dependencies": {
     "axios": "^0.17.1",

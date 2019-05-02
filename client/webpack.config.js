@@ -9,7 +9,7 @@ const server = {
   name: 'server',
   target: 'node',
   externals: nodeExternals(),
-  entry: './client/src/server/serverRenderer',
+  entry: './src/server/serverRenderer',
   output: {
     path: path.resolve('dist'),
     filename: 'server.js',
@@ -28,7 +28,7 @@ const client = {
   name: 'client',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './client/src/index.js'
+    './src/index.js'
   ],
   output: {
     path: path.resolve('dist'),
@@ -38,7 +38,7 @@ const client = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001'
+        target: `http://${process.env.API_HOST}:3000`
       }
     },
     port: 3000
@@ -58,7 +58,8 @@ const client = {
     ExtractTextPluginConfig,
     new CleanWebpackPlugin(['dist']),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.EnvironmentPlugin(['API_HOST'])
   ]
 }
 
