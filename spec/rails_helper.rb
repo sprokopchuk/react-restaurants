@@ -5,6 +5,7 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -64,3 +65,15 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+Capybara.register_driver :chrome do |app|
+  chrome_options = %w( --no-sandbox --disable-dev-shm-usage --window-size=1920x1080)
+  chrome_options += %w(headless disable-gpu)
+
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(chromeOptions: { args: chrome_options })
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
+end
+
+Capybara.javascript_driver = :chrome
+Capybara.default_driver = :chrome
+Capybara.app_host = 'http://react-app:3000'
