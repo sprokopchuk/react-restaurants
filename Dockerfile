@@ -1,4 +1,4 @@
-FROM ruby:2.4-slim as backend
+FROM ruby:2.4-slim as api
 
 WORKDIR /app
 
@@ -16,11 +16,15 @@ ENV CHROMEDRIVER_VERSION=74.0.3729.6
 RUN wget -q "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip" \
     && unzip chromedriver_linux64.zip -d /usr/local/bin && rm chromedriver_linux64.zip
 
-RUN gem install bundler && bundle install
+ENV BUNDLE_PATH=/bundle \
+    BUNDLE_BIN=/bundle/bin \
+    GEM_HOME=/bundle
+ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
 
-CMD rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b "0.0.0.0"
+RUN gem install bundler
+RUN bundle check || bundle install
 
-FROM  node:8.16-slim as front-end
+FROM  node:8.16-slim as app
 
 WORKDIR /app
 
@@ -28,5 +32,5 @@ COPY /client/ ./
 
 RUN yarn install
 
-CMD yarn run dev:start
+CMD yarn run server:start
 

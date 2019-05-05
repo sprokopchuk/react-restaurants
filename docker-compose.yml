@@ -1,12 +1,13 @@
 version: '3.4'
 
 services:
-  react-app:
-    container_name: react-app
-    image: react-app
+  app:
+    container_name: app
+    image: app
     build:
       context: .
-      target: front-end
+      target: app
+    command: yarn server:start
     env_file:
       - ./.env
     ports:
@@ -15,20 +16,22 @@ services:
       - ./client:/app
       - /app/node_modules
     depends_on:
-      - rails-app
+      - api
 
-  rails-app:
-    container_name: rails-app
-    image: rails-app
+  api:
+    container_name: api
+    image: api
     build:
       context: .
-      target: backend
+      target: api
+    command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
     env_file:
       - ./.env
     ports:
-      - 3001:3000
+      - 3001:3001
     volumes:
       - ./:/app
+      - bundle-cache:/bundle
     depends_on:
       - postgres
   postgres:
@@ -39,5 +42,37 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
 
+  test-app:
+    container_name: test-app
+    image: app
+    environment:
+      - API_HOST=http://api:4001
+    build:
+      context: .
+      target: app
+    command: yarn server:start
+    ports:
+      - 4000:3000
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - test-api
+
+  test-api:
+    container_name: test-api
+    image: api
+    build:
+      context: .
+      target: api
+    command: bash -c "rm -f tmp/pids/test_server.pid && RAILS_ENV=test bundle exec rails s -p 4001 -b '0.0.0.0' -P tmp/pids/test_server.pid"
+    env_file:
+      - ./.env
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+
 volumes:
   pg-data:
+  bundle-cache:

@@ -38,7 +38,7 @@ const client = {
   devServer: {
     proxy: {
       '/api': {
-        target: `http://${process.env.API_HOST}:3000`
+        target: `${process.env.API_HOST}`
       }
     },
     port: 3000

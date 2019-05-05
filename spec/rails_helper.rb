@@ -76,4 +76,5 @@ end
 
 Capybara.javascript_driver = :chrome
 Capybara.default_driver = :chrome
-Capybara.app_host = 'http://react-app:3000'
+Capybara.app_host = 'http://test-app:3000'
+Capybara.run_server = false
